@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การตรวจสอบความชื้นในดิน</title>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Protest+Guerrilla&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Itim", cursive;
+            background: url(imges/img77.png);
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        /* ปุ่มย้อนกลับ */
+/* ปุ่มย้อนกลับ */
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.back-button:hover {
+    background-color: rgba(230, 26, 26, 0.8);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(255, 0, 0, 0.5);
+}
+
+
+        h1 {
+            color: #000000;
+            background-color: #b8b8b3;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            font-family: "Itim", cursive;
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.775);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        label {
+            font-size: 18px;
+            color: #333;
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, button {
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            border: none;
+            color: rgb(0, 0, 0);
+            background: linear-gradient(90deg, #e5ff00 0%, #e5ff00 100%);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #00eaff 0%, #00eaff 100%);
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #e7f3fe;
+            border: 1px solid #b3e5fc;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            text-align: left;
+        }
+        #result h2 {
+            color: #000000;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        #result p {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        #moistureRange {
+            font-weight: bold;
+            color: #000000;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+                padding: 15px;
+            }
+            .container {
+                padding: 20px;
+            }
+            select, button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <a href="home.php" class="back-button">&lt;</a>
+
+    <h1>การตรวจสอบความชื้นในดิน</h1>
+
+    <div class="container">
+        <label for="plantType">เลือกประเภทพืช:</label>
+        <select id="plantType" onchange="showSensorOptions()">
+            <option value="" disabled selected>เลือกประเภทพืช</option>
+            <option value="Trees">ไม้ยืนต้น (Trees)</option>
+            <option value="Shrubs">ไม้พุ่ม (Shrubs)</option>
+            <option value="Vines">ไม้เลื้อย (Vines)</option>
+            <option value="Herbaceous Plants">ไม้ล้มลุก (Herbaceous Plants)</option>
+        </select>
+        <br>
+        <div id="sensorSelection" style="display: none;">
+            <label for="sensor">เลือกเซ็นเซอร์:</label>
+            <select id="sensor">
+                <option value="" disabled selected>เลือกเซ็นเซอร์</option>
+                <option value="1">เซ็นเซอร์ 1</option>
+                <option value="2">เซ็นเซอร์ 2</option>
+                <option value="3">เซ็นเซอร์ 3</option>
+            </select>
+        </div>
+        <br>
+        <button onclick="startUpdating()">เริ่มอัพเดต</button>
+        <p id="error-message" class="error" style="display:none;">กรุณาเลือกประเภทพืชและเซ็นเซอร์</p>
+
+        <div id="result">
+            <h2 id="selectedPlant"></h2>
+            <p id="selectedSensor"></p>
+            <p id="sensorData"></p>
+            <p id="moistureRange"></p>
+            <p id="lastUpdated">อัพเดตล่าสุด: <span id="updateTime"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const moistureData = {
+            "Trees": {
+                ranges: {
+                    low: "ความชื้นต่ำ (0-25%): ดินแห้ง, ต้องการการรดน้ำทันที.",
+                    medium: "ความชื้นปานกลาง (26-50%): ดินเริ่มแห้ง, ควรรดน้ำเร็วๆ นี้.",
+                    good: "ความชื้นดี (51-75%): ความชื้นเหมาะสมสำหรับการเจริญเติบโต.",
+                    high: "ความชื้นสูง (76-100%): ดินมีความชื้นมากเกินไป."
+                }
+            },
+            // more plant types...
+        };
+
+        let updateInterval;
+
+        function showSensorOptions() {
+            const plantType = document.getElementById("plantType").value;
+            const sensorSelection = document.getElementById("sensorSelection");
+            sensorSelection.style.display = plantType ? "block" : "none";
+        }
+
+        function startUpdating() {
+            const plantType = document.getElementById("plantType").value;
+            const sensor = document.getElementById("sensor").value;
+            const resultDiv = document.getElementById("result");
+            const errorMessage = document.getElementById("error-message");
+
+            if (plantType && sensor) {
+                errorMessage.style.display = "none";
+                document.getElementById("selectedPlant").innerHTML = `ประเภทพืช: ${plantType}`;
+                document.getElementById("selectedSensor").innerHTML = `เซ็นเซอร์: ${sensor}`;
+
+                if (updateInterval) {
+                    clearInterval(updateInterval);
+                }
+
+                updateInterval = setInterval(() => {
+                    fetch(`get_sensor_data.php?sensor=${sensor}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("sensorData").innerHTML = `ค่าความชื้นของเซ็นเซอร์: ${data.moisture_value}%`;
+                            let rangeText;
+                            if (data.moisture_value <= 25) {
+                                rangeText = moistureData[plantType].ranges.low;
+                            } else if (data.moisture_value <= 50) {
+                                rangeText = moistureData[plantType].ranges.medium;
+                            } else if (data.moisture_value <= 75) {
+                                rangeText = moistureData[plantType].ranges.good;
+                            } else {
+                                rangeText = moistureData[plantType].ranges.high;
+                            }
+                            document.getElementById("moistureRange").innerHTML = `<strong>ระดับความชื้น:</strong> ${rangeText}`;
+                            document.getElementById("updateTime").innerHTML = new Date().toLocaleTimeString();
+                            resultDiv.style.display = "block";
+
+                            if (data.moisture_value > 75 || data.moisture_value < 25) {
+                                alert("ค่าความชื้นอยู่นอกช่วงปกติ!");
+                            }
+                        });
+                }, 2000);
+            } else {
+                errorMessage.style.display = "block";
+                resultDiv.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

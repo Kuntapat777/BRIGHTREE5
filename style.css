@@ -1,0 +1,312 @@
+/* Reset and general styling */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+}
+
+/* Root variables */
+:root {
+    --bg-color: #0c0c0c;
+    --text-color: #fff;
+    --main-color: #e7e728;
+    --accent-color: #ff5722; /* New accent color for variety */
+    --big-font: 6.2rem;
+    --p-font: 1rem;
+}
+
+/* Body styling */
+body {
+    background: url('imges/img5.jpg'); /* Corrected image path */
+    background-size: cover;
+    background-position: center;
+    margin-top: -40px; /* ปรับค่า px ตามที่ต้องการ */
+    padding-top: -40px; /* ปรับค่า px ตามที่ต้องการ */
+}
+
+/* Header styling */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 20px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+}
+
+.logo img {
+    width: 100px; /* Reduced size for better balance */
+    height: auto;
+}
+
+.navlist {
+    display: flex;
+}
+
+.bright {
+    color: #ffffff; /* สีเหลืองสดใส */
+}
+
+.tree {
+    color: #0dd123; /* สีส้ม */
+}
+
+
+.navlist a {
+    display: inline-block;
+    margin: 0 20px;
+    color: var(--text-color);
+    font-size: var(--p-font);
+    transition: all 0.3s ease;
+}
+
+.navlist a:hover {
+    color: var(--main-color);
+    transform: translateY(-3px);
+}
+
+.right-content {
+    display: flex;
+    align-items: center;
+}
+
+.nav-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background: transparent;
+    border: 2px solid var(--text-color);
+    border-radius: 5px; /* Reduced border-radius */
+    color: var(--text-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 0px 15px rgba(255, 255, 255, 0.7); /* Adjusted box-shadow */
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--main-color);
+    color: var(--main-color);
+}
+
+#menu-icon {
+    font-size: 36px;
+    z-index: 10001;
+    cursor: pointer;
+    margin-left: 20px; /* Reduced margin */
+    display: none;
+}
+
+/* Hero section styling */
+.hero-img img {
+    width: 85%;
+    max-width: 85%;
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 10rem;
+    padding: 0 4%; /* Added padding for better content spacing */
+}
+
+.hero-text h1 {
+    font-size: var(--big-font);
+    font-weight: 2000; /* Adjusted font-weight for better emphasis */
+    margin: 0 0 20px; /* Reduced margin */
+}
+
+.hero-text h5 {
+    font-size: 20px; /* Increased size for better readability */
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+
+.hero-text p {
+    width: 100%;
+    max-width: 600px;
+    font-size: var(--p-font);
+    line-height: 1.5; /* Adjusted line-height */
+    color: var(--text-color);
+    margin-bottom: 30px; /* Adjusted margin */
+}
+
+.main-hero {
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #f7ff03;
+    border: 2px solid transparent;
+    border-radius: 5px; /* Adjusted border-radius */
+    font-size: 16px; /* Increased font-size for better readability */
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: var(--bg-color);
+    box-shadow: 0 0px 15px rgb(248, 191, 19); /* Adjusted box-shadow */
+}
+
+.btn:hover {
+    transform: scale(1.05); /* Adjusted scale effect */
+}
+
+/* Price section styling */
+.price {
+    display: flex;
+    align-items: center;
+    font-size: 24px; /* Reduced size for better balance */
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.price span {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--accent-color); /* Updated color for emphasis */
+    margin-left: 10px;
+}
+
+/* Icons styling */
+.icons {
+    position: absolute;
+    top: 50%;
+    padding: 0 5%; /* Adjusted padding */
+    transform: translate(-50%, -50%);
+}
+
+.icons i {
+    display: block;
+    margin: 20px 0; /* Reduced margin */
+    color: var(--text-color);
+    font-size: 24px; /* Adjusted font-size */
+    transition: all 0.3s ease;
+}
+
+.icons i:hover {
+    transform: translateY(-3px); /* Adjusted hover effect */
+    color: var(--main-color);
+}
+
+/* Scroll indicator styling */
+.scroll {
+    position: absolute;
+    top: 90%;
+    right: 5%;
+    transform: translateY(-50%);
+}
+
+.scroll a {
+    font-size: 14px; /* Adjusted font-size */
+    color: var(--text-color);
+}
+
+.scroll i {
+    font-size: 22px; /* Adjusted font-size */
+    color: var(--text-color);
+    margin-right: 5px; /* Adjusted margin */
+}
+
+/* Media queries for responsiveness */
+@media(max-width: 1770px) {
+    header {
+        padding: 15px 4%;
+    }
+    .icons {
+        padding: 0 4%;
+    }
+    .scroll {
+        right: 4%;
+    }
+}
+
+@media(max-width: 1670px) {
+    :root {
+        --big-font: 5rem;
+        --p-font: 14px;
+    }
+}
+
+@media(max-width: 1370px) {
+    .icons {
+        display: none;
+    }
+    section {
+        padding: 0 4%;
+    }
+}
+
+@media(max-width: 1150px) {
+    :root {
+        --big-font: 4rem;
+    }
+    .price {
+        font-size: 18px;
+    }
+    .btn {
+        padding: 10px 20px;
+    }
+}
+
+@media(max-width: 950px) {
+    #menu-icon {
+        display: block;
+    }
+    .navlist {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9); /* Adjusted background */
+        text-align: center;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    .navlist.active {
+        right: 0;
+    }
+    .navlist a {
+        font-size: 22px; /* Adjusted font-size */
+        margin: 10px 0;
+    }
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 100px; /* Adjusted padding */
+    }
+    .hero-text h1 {
+        font-size: 2.5rem; /* Adjusted font-size */
+    }
+    .hero-text p {
+        margin-bottom: 15px; /* Adjusted margin */
+    }
+    .scroll a {
+        font-size: 12px; /* Adjusted font-size */
+    }
+}
+
+@media(max-width: 450px) {
+    .hero-text h5 {
+        font-size: 12px; /* Adjusted font-size */
+    }
+    .hero-text p {
+        line-height: 26px; /* Adjusted line-height */
+    }
+}

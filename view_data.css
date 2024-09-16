@@ -1,0 +1,159 @@
+/* สไตล์ทั่วไป */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: url(imges/img77.png) no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #e0e0e0;
+    overflow: hidden; /* ป้องกันการเลื่อน */
+}
+
+/* คอนเทนเนอร์หลัก */
+.container {
+    width: 90%;
+    max-width: 500px;
+    padding: 40px;
+    background: rgba(20, 20, 20, 0.9); /* เพิ่มความเข้ม */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(255, 255, 255, 0.05); /* เพิ่มเงาด้านใน */
+    overflow: hidden;
+    backdrop-filter: blur(10px); /* เพิ่มการเบลอ */
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02); /* ขยายเล็กน้อยเมื่อโฮเวอร์ */
+}
+
+/* ปุ่มย้อนกลับ */
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.back-button:hover {
+    background-color: rgba(230, 26, 26, 0.8);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(255, 0, 0, 0.5);
+}
+
+/* หัวข้อ */
+h1 {
+    text-align: center;
+    color: #f1f1f1;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* เพิ่มเงาให้หัวข้อ */
+}
+
+/* ฟอร์มกรองข้อมูล */
+.filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.filter-form .form-group {
+    width: 100%;
+    max-width: 450px;
+}
+
+.filter-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #f1f1f1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.filter-form input[type="date"],
+.filter-form input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.filter-form input[type="date"]:focus,
+.filter-form input[type="number"]:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #ffff06;
+    outline: none;
+    transform: scale(1.02); /* ขยายเล็กน้อยเมื่อโฟกัส */
+}
+
+.filter-form button {
+    padding: 12px 24px;
+    background-color: #d6dc11;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.filter-form button:hover {
+    background-color: #d1fb14;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgb(216, 236, 2);
+}
+
+/* เพิ่มแอนิเมชันไอคอน */
+.icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+@keyframes blinkBackground {
+    0% { background-color: rgba(255, 0, 0, 0.4); }
+    100% { background-color: rgba(255, 0, 0, 0); }
+}
+
+/* เพิ่มการตอบสนองหน้าจอมือถือ */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .filter-form {
+        gap: 10px;
+    }
+
+    .back-button {
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+}

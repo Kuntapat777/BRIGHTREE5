@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Moisture Monitoring</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #333;
+            background: url(imges/img77.png);
+            color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            padding: 20px;
+            background-color: #000;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* ปุ่มย้อนกลับ */
+/* ปุ่มย้อนกลับ */
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 12px 24px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.back-button:hover {
+    background-color: rgba(230, 26, 26, 0.8);
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(255, 0, 0, 0.5);
+}
+
+        h1 {
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        #chart-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 90%;
+            margin: 30px auto;
+            gap: 30px;
+            position: relative;
+        }
+
+        #latest-values {
+            max-width: 250px;
+            background-color: #444;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: left;
+            font-size: 1em;
+            margin-left: 30px;
+            position: relative;
+        }
+
+        #latest-values h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #fdec00;
+        }
+
+        .moisture-status {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            font-size: 1em;
+            background-color: #555;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .moisture-status span {
+            flex: 1;
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .sensor1 { background-color: #666; }
+        .sensor2 { background-color: #666; }
+        .sensor3 { background-color: #666; }
+
+        .status-bar {
+            height: 10px;
+            border-radius: 5px;
+        }
+
+        #chart {
+            flex: 2;
+            max-width: 900px;
+            position: relative;
+        }
+
+        #chart-controls {
+            margin: 30px auto;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0 20px;
+        }
+
+        select {
+            padding: 10px;
+            border: none;
+            background-color: #fdec00;
+            color: #000;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        select:hover {
+            background-color: #e0b800;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            #chart-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            select {
+                width: 100%;
+            }
+
+            #chart-container {
+                flex-direction: column;
+                width: 95%;
+            }
+
+            #latest-values {
+                width: 100%;
+                margin-top: 20px;
+                margin-left: 0;
+            }
+        }
+        .status-bar {
+        height: 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <a href="home.php" class="back-button">&lt; </a>
+        <h1>Soil Moisture Monitoring</h1>
+    </header>
+
+    <div id="chart-controls">
+        <select id="sensor-select">
+            <option value="1">Show Sensor 1 Data</option>
+            <option value="2">Show Sensor 2 Data</option>
+            <option value="3">Show Sensor 3 Data</option>
+        </select>
+    </div>
+
+    <div id="chart-container">
+        <div id="chart">
+            <canvas id="myChart"></canvas>
+        </div>
+        
+        <div id="latest-values">
+            <h2>Latest Moisture Values</h2>
+            <div class="moisture-status sensor1">
+                <span id="sensor1-status" class="status-bar"></span>
+                Sensor 1: <span id="sensor1-value">N/A</span> %
+            </div>
+            <div class="moisture-status sensor2">
+                <span id="sensor2-status" class="status-bar"></span>
+                Sensor 2: <span id="sensor2-value">N/A</span> %
+            </div>
+            <div class="moisture-status sensor3">
+                <span id="sensor3-status" class="status-bar"></span>
+                Sensor 3: <span id="sensor3-value">N/A</span> %
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let currentSensor = 1;
+let dataLimit = 10; // Limit for the number of data points to show
+
+async function fetchData() {
+    try {
+        const response = await fetch('display_data.php');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        const times = data.timestamps.map(timestamp => new Date(timestamp).toLocaleTimeString());
+
+        // Update the chart
+        updateChart(times, data.moisture_values_1, data.moisture_values_2, data.moisture_values_3);
+
+        // Update the latest moisture values
+        const sensorValues = {
+            1: data.moisture_values_1.slice(-1)[0] || 'N/A',
+            2: data.moisture_values_2.slice(-1)[0] || 'N/A',
+            3: data.moisture_values_3.slice(-1)[0] || 'N/A'
+        };
+
+        document.getElementById('sensor1-value').textContent = sensorValues[1];
+        document.getElementById('sensor2-value').textContent = sensorValues[2];
+        document.getElementById('sensor3-value').textContent = sensorValues[3];
+
+        // Update the status bars
+        updateStatusBar('sensor1-status', sensorValues[1]);
+        updateStatusBar('sensor2-status', sensorValues[2]);
+        updateStatusBar('sensor3-status', sensorValues[3]);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+function updateChart(timestamps, moistureValues1, moistureValues2, moistureValues3) {
+    // Reverse the arrays to show latest data on the right
+    const reversedTimestamps = timestamps.reverse();
+    const sensorData = [
+        moistureValues1.reverse(),
+        moistureValues2.reverse(),
+        moistureValues3.reverse()
+    ][currentSensor - 1];
+
+    // Keep only the latest `dataLimit` data points
+    const limitedTimestamps = reversedTimestamps.slice(0, dataLimit);
+    const limitedData = sensorData.slice(0, dataLimit);
+
+    myChart.data.labels = limitedTimestamps;
+    myChart.data.datasets[0].data = limitedData;
+
+    // Update borderColor based on the moisture value ranges
+    myChart.data.datasets[0].borderColor = limitedData.map(value => {
+        if (value >= 71) return 'rgba(75, 192, 192, 1)'; // Green for high moisture
+        if (value >= 41) return 'rgba(255, 159, 64, 1)'; // Orange for moderate moisture
+        if (value >= 21) return 'rgba(255, 205, 86, 1)'; // Yellow for low moisture
+        return 'rgba(255, 99, 132, 1)'; // Red for very low moisture
+    });
+
+    myChart.update();
+}
+
+function updateStatusBar(elementId, value) {
+    const statusElement = document.getElementById(elementId);
+    if (value === 'N/A') {
+        statusElement.style.backgroundColor = '#888';
+    } else {
+        const moisture = parseInt(value, 10);
+        if (moisture >= 71) statusElement.style.backgroundColor = '#4caf50'; // Green
+        else if (moisture >= 41) statusElement.style.backgroundColor = '#ffeb3b'; // Yellow
+        else if (moisture >= 21) statusElement.style.backgroundColor = '#ff9800'; // Orange
+        else statusElement.style.backgroundColor = '#f44336'; // Red
+    }
+}
+
+document.getElementById('sensor-select').addEventListener('change', (e) => {
+    currentSensor = parseInt(e.target.value);
+    fetchData();
+});
+
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Soil Moisture (%)',
+            data: [],
+            borderColor: [],
+            backgroundColor: 'rgba(0, 0, 0, 0.1)',
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Time'
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Moisture (%)'
+                },
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) { return value + '%' }
+                }
+            }
+        }
+    }
+});
+
+fetchData();
+setInterval(fetchData, 2000);
+
+    </script>
+</body>
+</html>

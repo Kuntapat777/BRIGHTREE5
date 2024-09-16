@@ -1,0 +1,209 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: center;
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    transition: background 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+
+/* Header styles */
+h1 {
+    color: #ffffff;
+    font-size: 3.5em; /* Increased size for emphasis */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for better visibility */
+    margin: 20px 0;
+    font-weight: 700;
+}
+
+/* Weather App container */
+.weather-app {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Weather Container Styles */
+.weather-container {
+    margin: 20px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.85); /* Slightly opaque for better readability */
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    backdrop-filter: blur(8px); /* Slight blur effect for modern look */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: transform 0.4s ease, background 0.5s ease, box-shadow 0.4s ease;
+}
+
+.weather-container:hover {
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Weather Form (Province selection and button) */
+.weather-container label {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #555;
+    margin-right: 10px;
+}
+
+.weather-container select,
+.weather-container button {
+    padding: 12px;
+    font-size: 1.2em;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 5px;
+    background: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.weather-container select:focus,
+.weather-container button:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.weather-container button {
+    background: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.weather-container button:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Weather Result container */
+#weather-result {
+    margin: 20px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Weather icon and data display */
+.weather-icon {
+    font-size: 4.5em; /* Increased size for better visibility */
+    margin-bottom: 15px;
+    color: #f39c12;
+    transition: color 0.5s ease, transform 0.5s ease;
+}
+
+.weather-icon.rainy {
+    color: #3498db;
+}
+
+.weather-icon.cloudy {
+    color: #95a5a6;
+}
+
+.weather-icon:hover {
+    transform: rotate(20deg);
+}
+
+.weather-description {
+    font-size: 1.5em;
+    color: #555;
+    margin: 15px 0;
+}
+
+.temperature {
+    font-size: 3.5em; /* Increased size for better readability */
+    color: #e67e22;
+    font-weight: bold;
+    margin: 10px 0;
+    border: 2px solid #e67e22; /* Added border for emphasis */
+    border-radius: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.75); /* Light background for readability */
+}
+
+.humidity {
+    font-size: 1.6em; /* Increased size for better readability */
+    color: #3498db;
+    margin: 10px 0;
+    border: 2px solid #3498db; /* Added border for emphasis */
+    border-radius: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.75); /* Light background for readability */
+}
+
+/* Background Styles for weather conditions */
+.sunny-background {
+    background: url('path/to/sunny-background-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.rainy-background {
+    background: linear-gradient(to bottom, #1b1c1bd6, #d4d5d993);
+}
+
+.cloudy-background {
+    background: linear-gradient(to bottom, #268bef, #d0e2e8);
+}
+
+.dry-background {
+    background: linear-gradient(to bottom, #ffdfba, #ffab91);
+}
+
+.humid-background {
+    background: linear-gradient(to bottom, #000000, #97999c);
+}
+
+/* Rain animation canvas */
+#rain-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Sunshine animation canvas */
+#sunshine-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    display: none; /* Hidden by default */
+}
+
+/* Add glowing effect */
+.weather-container,
+#weather-result {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    transition: border-color 0.3s ease;
+}
+
+.weather-container:hover {
+    border-color: #3498db;
+}

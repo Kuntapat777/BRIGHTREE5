@@ -1,0 +1,69 @@
+/* profile.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa; /* สีพื้นหลังที่นุ่มนวลมากขึ้น */
+}
+
+.profile {
+    max-width: 500px; /* ขนาดของคอนเทนเนอร์โปรไฟล์เล็กลงเล็กน้อย */
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff; /* พื้นหลังของบล็อกโปรไฟล์ */
+    border-radius: 15px; /* เพิ่มความโค้งมนให้มากขึ้น */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* เพิ่มเงาที่เด่นขึ้น */
+    border: 1px solid #e0e0e0; /* ขอบที่บางและสีอ่อน */
+}
+
+.profile h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333; /* สีข้อความที่เข้มขึ้น */
+    text-align: center;
+}
+
+.profile form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-field {
+    margin-bottom: 20px;
+    position: relative; /* ใช้สำหรับตำแหน่งของป้ายกำกับ */
+}
+
+.profile-field label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #666; /* สีข้อความที่สว่างขึ้น */
+    display: block;
+}
+
+.profile-field input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* ความโค้งมนที่สวยงาม */
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9; /* สีพื้นหลังที่เบา */
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.profile-field input:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+}
+
+.profile-field input:focus {
+    border-color: #007bff; /* สีขอบเมื่อโฟกัส */
+    background-color: #ffffff; /* สีพื้นหลังเมื่อโฟกัส */
+}
+
+@media (max-width: 768px) {
+    .profile {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,378 @@
+:root{
+    --bg-color: #0c0c0c;
+    --text-color: #fff;
+    --main-color: #1ff83c;
+
+    --big-font: 6.2rem;
+    --p-font: 1rem;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+}
+
+body{
+    background: url(imges/img77.png);
+    color: #eee;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.logo img {
+    width: 100px; /* ปรับความกว้างของภาพ */
+    height: auto; /* ให้ความสูงปรับตามความกว้างเพื่อรักษาสัดส่วน */
+    max-width: 100%; /* ทำให้ภาพไม่เกินขอบเขตของผู้ปกครอง */
+}
+.bright {
+    color: #ffffff; /* สีเหลืองสดใส */
+}
+
+.tree {
+    color: #0dd123; /* สีส้ม */
+}
+
+header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 35px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all .50s ease;
+}
+
+.navlist {
+    display: grid;
+    justify-content: center; /* จัดกลางในแนวนอน */
+    align-items: center; /* จัดกลางในแนวตั้ง */
+    grid-auto-flow: column; /* วางรายการในแนวนอน */
+    gap: 50px; /* ระยะห่างระหว่างรายการ */
+    list-style-type: none; /* เอาเครื่องหมายจุดออก */
+    padding: 0; /* เอาค่าการเยื้องออก */
+    margin: 0; /* เอาค่าการเยื้องออก */
+}
+.navlist a{
+    display: inline-block;
+    margin: 0 35px;
+    color: var(--text-color);
+    font-size: var(--p-font);
+    transition: all .6s ease;
+}
+
+.navlist a:hover{
+    color: var(--main-color);
+    transform: translateY(-5px);    
+}
+.right-content{
+    display: flex;
+    align-items: center;
+}
+.nav-btn{
+    display: inline-block;
+    padding: 9px 24px;
+    background: transparent;
+    border: 2px solid var(--text-color);
+    border-radius: 7px;
+    color: var(--text-color);
+    font-size: 500;
+    transition: all .6s ease;
+}
+.nav-btn:hover{
+    transform: translateY(-5px);
+    border: 2px solid var(--main-color);
+    color: var(--main-color);
+}
+
+#menu-icon{
+    font-size: 42px;
+    z-index: 10001;
+    cursor: pointer;
+    margin-left: 25px;
+    display: none;
+}
+.hero-img img {
+    width: 500px; /* ปรับความกว้างของภาพ */
+    height: auto; /* ให้ความสูงปรับตามความกว้างเพื่อรักษาสัดส่วน */
+    max-width: 100%; /* ทำให้ภาพไม่เกินขอบเขตของผู้ปกครอง */
+}
+section{
+    padding: 0 14%;
+}
+.hero{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    
+    background-size: cover;
+    background-position: right 5px ;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 2rem;
+}
+.hero-text h1{
+    font-size: var(--big-font);
+    font-weight: 900;
+    margin: 15px 0;
+}
+.hero-text h5{
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.hero-text p{
+    width: 100%;
+    max-width: 620px;
+    font-size: var(--p-font);
+    font-weight: 400;
+    line-height: 32px;
+    color: var(--text-color);
+    margin-bottom: 40px;
+}
+
+.main-hero{
+    display: flex;
+    align-items: center;
+}
+.btn{
+    display: inline-block;
+    padding: 13px 32px;
+    background: #e9ed09;
+    border: 2px solid transparent;
+    border-radius: 7px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all ,6s ease;
+    margin-right: 20px;
+    color: var(--text-color);
+}
+.btn:hover{
+    transform: scale(1.1);
+}
+.price{
+    display: flex;
+    align-items:  center;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+.price span{
+    font-size:17px;
+    font-weight: 400;
+    color: var(--main-color);
+    margin-left: 10px;;
+}
+.icons {
+    position: fixed; /* ทำให้ตำแหน่งติดกับหน้าจอ */
+    bottom: 20px; /* เปลี่ยนจาก 0 เป็น 20px เพื่อขยับขึ้นจากขอบล่าง */
+    left: 50%; /* จัดให้อยู่ตรงกลางในแนวนอน */
+    transform: translateX(-50%); /* ปรับให้อยู่ตรงกลาง */
+    display: flex; /* ใช้ Flexbox เพื่อจัดเรียงในแนวนอน */
+    justify-content: center; /* จัดไอคอนให้ตรงกลาง */
+    width: 100%; /* ให้แถบไอคอนกว้างเต็มหน้าจอ */
+    padding: 10px 0; /* เพิ่ม padding ด้านบนและล่าง */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้กับพื้นที่ไอคอน */
+    z-index: 1000; /* ทำให้อยู่เหนือองค์ประกอบอื่น */
+}
+
+
+.icons i {
+    margin: 0 15px; /* ระยะห่างระหว่างไอคอนในแนวนอน */
+    color: var(--text-color); /* ใช้สีที่กำหนดในตัวแปร */
+    font-size: 25px; /* ขนาดไอคอน */
+    transition: all 0.6s; /* การเปลี่ยนแปลงเมื่อ hover */
+}
+
+.icons i:hover {
+    transform: translateY(-5px); /* ย้ายไอคอนขึ้นเล็กน้อยเมื่อ hover */
+    color: var(--main-color); /* เปลี่ยนสีเมื่อ hover */
+}
+
+.scroll{
+    position: absolute;
+    top: 92%;
+    right: 7%;
+    transform: translateY(-50%);
+}
+.scroll a{
+    font-size: 16px;
+    color: var(--text-color);
+}
+.scroll i{
+    font-size: 20px;
+    color: var(--text-color);
+    margin-right: 6px;
+}
+
+@media(max-width: 1770px){
+    header{
+        padding: 22px 4%
+    }
+    .icons{
+        padding: 0 4%;
+    }
+    .scroll{
+        right: 4%
+    }
+}    
+@media(max-width: 1670px){
+    :root{
+        --big-font: 5.5rem;
+        --p-font: 15px;
+    }
+}
+@media(max-width: 1370px){
+    .icons{
+        display: none;
+    }
+    section{
+        padding: 0 4%;
+    }
+}
+@media(max-width: 1150px){
+    :root{
+        --big-font: 4.6rem;
+    }
+    .price{
+        font-size: 20px;
+    }
+    .btn{
+        padding: 10px 23px;
+    }
+}
+@media(max-width: 950px){
+    #menu-icon{
+        display:block;
+    }
+    .navlist {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        padding: 100px 50px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 100;
+        display: flex;
+        flex-direction: column;
+        backdrop-filter: blur(32px);
+        transition: all .6s ease-in-out;
+    }
+    .navlist a{
+        display: block;
+        padding: 0;
+        margin: 0px 0px 25px 0px;
+        font-size: 1.7rem;
+    }
+    .navlist.open {
+        left: 0;
+
+    }
+}
+
+@media(max-width: 950px){
+    .scroll{
+        display: none;
+    }
+    .hero{
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .hero-text{
+        padding-top: 130px;
+    }
+    .hero-img{
+        height: 500px;
+        width: 500px;
+        margin: 0 auto;
+    }
+    .hero-img img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+@media(max-width: 570px){
+    .hero{
+        height:100vh;
+    }
+    .hero-img{
+        height: 400px;
+        width: 500px;
+        margin: 0 auto;
+    }
+    :root{
+        --big-font: 4rem;
+    }
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown .dropbtn {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.dropdown .dropbtn:hover {
+    background-color: #575757;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #1d1b1b;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.right-content{
+    display: flex;
+    align-items: center;
+}
+.nav-btn{
+    display: inline-block;
+    padding: 9px 24px;
+    background: transparent;
+    border: 2px solid var(--text-color);
+    border-radius: 7px;
+    color: var(--text-color);
+    font-size: 500;
+    transition: all .6s ease;
+}
